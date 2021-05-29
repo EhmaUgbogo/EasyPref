@@ -1,0 +1,3 @@
+include ':EasyPrefLibrary'
+include ':app'
+rootProject.name = "EasyPref"
