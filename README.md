@@ -50,12 +50,14 @@ ___
 
 ```kotlin
   // Store custom types
+  
   EasyPref.putBoolean(key, boolValue)
   EasyPref.getBoolean(key)
   
   // ... Same for Strings, Int, etc 
   
   // Store custom types
+  
   EasyPref.putObject(OBJ_KEY, yourData)
   EasyPref.getObject(OBJ_KEY, YourData::class.java)
   
