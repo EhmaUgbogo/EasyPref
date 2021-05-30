@@ -1,7 +1,6 @@
 # EasyPref
 
 > EasyPrefLib
-___
 
 ### Description:
 A SharedPreference Library that can be used to store all types including your custom classes.
@@ -20,10 +19,10 @@ To get a Git project into your build:
 
 ```groovy
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
 }
 ```
 
@@ -31,7 +30,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	    implementation 'com.github.EhmaUgbogo:EasyPref:Tag'
+	implementation 'com.github.EhmaUgbogo:EasyPref:Tag'
 }
 ```
 ___
