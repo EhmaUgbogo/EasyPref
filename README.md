@@ -49,12 +49,10 @@ ___
 2. Use as needed
 
 ```kotlin
-  // Store custom types
   
   EasyPref.putBoolean(key, boolValue)
-  EasyPref.getBoolean(key)
+  EasyPref.getBoolean(key)  // ... Same for Strings, Int, etc 
   
-  // ... Same for Strings, Int, etc 
   
   // Store custom types
   
