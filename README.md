@@ -1,4 +1,4 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/EhmaUgbogo/EasyPref?style=plastic) ![GitHub top language](https://img.shields.io/github/languages/top/EhmaUgbogo/EasyPref?style=plastic) ![GitHub release (by 1.0)](https://img.shields.io/github/downloads/EhmaUgbogo/EasyPref/1.0/total?style=plastic) ![GitHub](https://img.shields.io/github/license/EhmaUgbogo/EasyPref?style=plastic) ![Twitter Follow](https://img.shields.io/twitter/follow/EhmaUgbogo?style=social)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/EhmaUgbogo/EasyPref?style=flat-square) ![GitHub top language](https://img.shields.io/github/languages/top/EhmaUgbogo/EasyPref?style=flat-square) ![GitHub release (by 1.0)](https://img.shields.io/github/downloads/EhmaUgbogo/EasyPref/1.0/total?style=flat-square) ![Twitter Follow](https://img.shields.io/twitter/follow/EhmaUgbogo?style=social)
 
 # EasyPref
 
