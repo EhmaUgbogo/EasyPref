@@ -1,3 +1,5 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/EhmaUgbogo/EasyPref?style=plastic) ![GitHub top language](https://img.shields.io/github/languages/top/EhmaUgbogo/EasyPref?style=plastic) ![GitHub release (by tag)](https://img.shields.io/github/downloads/EhmaUgbogo/EasyPref/1.0/total?style=plastic) ![GitHub](https://img.shields.io/github/license/EhmaUgbogo/EasyPref?style=plastic) ![Twitter Follow](https://img.shields.io/twitter/follow/EhmaUgbogo?style=social)
+
 # EasyPref
 
 > EasyPrefLib
@@ -60,6 +62,8 @@ ___
 ```
 
 ### Licence
+
+MIT Licence
 
 Copyright (c) [2021] Ehma Ugbogo
 
