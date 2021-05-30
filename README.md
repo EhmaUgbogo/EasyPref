@@ -30,7 +30,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.EhmaUgbogo:EasyPref:Tag'
+	implementation 'com.github.EhmaUgbogo:EasyPref:1.0'
 }
 ```
 ___
