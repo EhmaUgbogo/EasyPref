@@ -39,7 +39,7 @@ ___
 
 ### Usage
 
-1. Initialize EasyPref in your application class of MainActivity
+1. Initialize EasyPref in your application class or MainActivity
 
 ```kotlin
   EasyPref.initialize(this) // If setup in your application class
