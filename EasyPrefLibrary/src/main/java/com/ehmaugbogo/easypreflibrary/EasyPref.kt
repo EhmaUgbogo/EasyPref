@@ -1,6 +1,5 @@
 package com.ehmaugbogo.easypreflibrary
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
@@ -25,16 +24,15 @@ object EasyPref {
 
 
     /**
-     * Should be called first just once in your Application class or in MainActivity [activity.application]. (It serves as the feature's setup)
+     * Should be called first and just once in your Application or in MainActivity class [activity.application].
+     * It serves as the feature's init setup
      *
      * @param application
      */
-    fun initialize(application: Application) {
-        initLib(application)
-    }
+    @JvmStatic fun initialize(application: Application) = initPref(application)
 
 
-    private fun initLib(application: Application) {
+    private fun initPref(application: Application) {
         pref = application.applicationContext.getSharedPreferences(
             "${application.packageName}_SharePref",
             Context.MODE_PRIVATE
@@ -52,7 +50,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun putInt(key: String, value: Int) {
+    @JvmStatic fun putInt(key: String, value: Int) {
         assertInitialized()
         editor.putInt(key, value).apply()
     }
@@ -63,7 +61,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun putLong(key: String, value: Long) {
+    @JvmStatic fun putLong(key: String, value: Long) {
         assertInitialized()
         editor.putLong(key, value).apply()
     }
@@ -74,7 +72,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun putFloat(key: String, value: Float) {
+    @JvmStatic fun putFloat(key: String, value: Float) {
         assertInitialized()
         editor.putFloat(key, value).apply()
     }
@@ -85,7 +83,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun putString(key: String, value: String) {
+    @JvmStatic fun putString(key: String, value: String) {
         assertInitialized()
         editor.putString(key, value).apply()
     }
@@ -96,7 +94,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun putBoolean(key: String, value: Boolean) {
+    @JvmStatic fun putBoolean(key: String, value: Boolean) {
         assertInitialized()
         editor.putBoolean(key, value).apply()
     }
@@ -107,7 +105,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun putStringSet(key: String, data: MutableSet<String>) {
+    @JvmStatic fun putStringSet(key: String, data: MutableSet<String>) {
         assertInitialized()
         editor.putStringSet(key, data).apply()
     }
@@ -121,7 +119,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun getInt(key: String): Int {
+    @JvmStatic fun getInt(key: String): Int {
         assertInitialized()
         return pref.getInt(key, 0)
     }
@@ -132,7 +130,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun getLong(key: String, value: Long): Long {
+    @JvmStatic fun getLong(key: String, value: Long): Long {
         assertInitialized()
         return pref.getLong(key, 0)
     }
@@ -143,7 +141,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun getFloat(key: String): Float {
+    @JvmStatic fun getFloat(key: String): Float {
         assertInitialized()
         return pref.getFloat(key, 0f)
     }
@@ -154,7 +152,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun getString(key: String, defValue: String? = null): String? {
+    @JvmStatic fun getString(key: String, defValue: String? = null): String? {
         assertInitialized()
         return pref.getString(key, defValue)
     }
@@ -165,7 +163,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun getBoolean(key: String): Boolean {
+    @JvmStatic fun getBoolean(key: String): Boolean {
         assertInitialized()
         return pref.getBoolean(key, false)
     }
@@ -176,7 +174,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun getStringSet(key: String): MutableSet<String>? {
+    @JvmStatic fun getStringSet(key: String): MutableSet<String>? {
         assertInitialized()
         return pref.getStringSet(key, mutableSetOf())
     }
@@ -187,7 +185,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun <T> putObject(key: String, obj: T) {
+    @JvmStatic fun <T> putObject(key: String, obj: T) {
         val json = Gson().toJson(obj)
         putString(key, json)
     }
@@ -198,7 +196,7 @@ object EasyPref {
      *  @param key
      *  @param value
      */
-    fun <T> getObject(key: String, classOfObj: Class<T>): T? {
+    @JvmStatic fun <T> getObject(key: String, classOfObj: Class<T>): T? {
         val jsonString = getString(key)
         if (jsonString.isNullOrEmpty()) return null
         return Gson().fromJson(jsonString, classOfObj)
@@ -221,6 +219,6 @@ object EasyPref {
      * @version 1.0
      * @since 29 May 2021
      */
-    class EasyPrefException(msg: String) : Exception(msg)
+    internal class EasyPrefException(msg: String) : Exception(msg)
 
 }

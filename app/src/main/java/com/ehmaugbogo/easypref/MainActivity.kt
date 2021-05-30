@@ -44,4 +44,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    /* To save objects */
+    private fun saveDateData(dateData: DateData){
+        EasyPref.putObject(DATE_DATA_KEY, dateData)
+    }
+
+    private fun getDateData(): DateData?{
+        return EasyPref.getObject(DATE_DATA_KEY, DateData::class.java)
+    }
+
+
 }
