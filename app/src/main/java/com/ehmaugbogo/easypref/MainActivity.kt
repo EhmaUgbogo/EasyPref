@@ -3,6 +3,7 @@ package com.ehmaugbogo.easypref
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ehmaugbogo.easypref.databinding.ActivityMainBinding
+import com.ehmaugbogo.easypref.util.showSnackBar
 import com.ehmaugbogo.easypreflibrary.EasyPref
 
 private const val HAS_LOGGED_IN_BEFORE = "HAS_LOGGED_IN_BEFORE"
@@ -24,34 +25,27 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             hasVisitedBeforeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                 EasyPref.putBoolean(HAS_LOGGED_IN_BEFORE, isChecked)
-                display(isChecked)
+
+                if (isChecked) EasyPref.putObject(DATE_DATA_KEY, DateData(2021, 5, 31))
+                else EasyPref.putObject(DATE_DATA_KEY, null)
             }
 
-            checkPreviousVisitation()
+            observePrefs()
+
         }
 
 
     }
 
-    private fun ActivityMainBinding.checkPreviousVisitation() {
-        val isLoggedIn = EasyPref.getBoolean(HAS_LOGGED_IN_BEFORE)
-        hasVisitedBeforeSwitch.isChecked = isLoggedIn
-        display(isLoggedIn)
+    private fun ActivityMainBinding.observePrefs() = EasyPref.apply {
+        observeBoolean(HAS_LOGGED_IN_BEFORE).observe(this@MainActivity) {
+            hasVisitedBeforeSwitch.isChecked = it
+            readTextView.text = "$it Observe"
+        }
+
+        observeObject(DATE_DATA_KEY, DateData::class.java).observe(this@MainActivity) {
+            it.value?.let { data -> showSnackBar("$data Observed") }
+        }
     }
-
-    private fun ActivityMainBinding.display(isLoggedIn: Boolean) {
-        readTextView.text = "$isLoggedIn"
-    }
-
-
-    /* To save objects */
-    private fun saveDateData(dateData: DateData){
-        EasyPref.putObject(DATE_DATA_KEY, dateData)
-    }
-
-    private fun getDateData(): DateData?{
-        return EasyPref.getObject(DATE_DATA_KEY, DateData::class.java)
-    }
-
 
 }

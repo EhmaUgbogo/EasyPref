@@ -45,4 +45,13 @@ dependencies {
     // Gson
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    // LiveData
+    def version_lifecycle = "2.3.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
+    //implementation("androidx.lifecycle:lifecycle-runtime-ktx:$version_lifecycle")
+    //implementation("androidx.lifecycle:lifecycle-common-java8:$version_lifecycle")
+
+
+
+
 }

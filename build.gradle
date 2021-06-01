@@ -35,6 +35,7 @@ buildscript {
         libVersionCode = 1
         libVersionName = '1.0.0'
         datastoreVersion = '1.0.0-alpha08'
+        gson = '2.8.6'
     }
 }
 
