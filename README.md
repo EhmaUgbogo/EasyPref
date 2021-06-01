@@ -2,15 +2,16 @@
 
 # EasyPref
 
-> EasyPrefLib
+> Observable EasyPrefLib
 
 ### Description:
-A SharedPreference Library that can be used to store all types including your custom classes.
+A SharedPreference Library that can be used to store all types including your custom classes and observe them too if needed.
 ___
 
 ### Features:
 - Easily store primitive types
 - Easily store custom classes
+- Easily observe primitive or custom classes
 
 ___
 
@@ -21,10 +22,10 @@ To get a Git project into your build:
 
 ```groovy
 allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+    repositories {
+	...
+	maven { url 'https://jitpack.io' }
+    }
 }
 ```
 
@@ -32,7 +33,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.EhmaUgbogo:EasyPref:1.0'
+    implementation 'com.github.EhmaUgbogo:EasyPref:1.0.1'
 }
 ```
 ___
@@ -60,6 +61,24 @@ ___
   EasyPref.getObject(OBJ_KEY, YourData::class.java)
   
 ```
+
+2. Observe as needed ()
+
+```kotlin
+  
+  EasyPref.observeBoolean(key).observe(this@MainActivity) {
+       // your code here
+  }
+  
+  // observe custom types - returns (PrefObjectHolder<T>)
+  
+  EasyPref.observeObject(OBJ_KEY, YourData::class.java).observe(viewLifecycleOwner) {
+      it.value?.let { yourData -> showSnackBar("$yourData Observed") }
+  }
+ 
+  
+```
+
 
 ### Licence
 
