@@ -118,7 +118,7 @@ object EasyPref {
      *  @see android.content.SharedPreferences.Editor#putString(String, String)
      */
     @JvmStatic
-    fun putString(key: String, value: String) {
+    fun putString(key: String, value: String?) {
         assertInitialized()
         editor.putString(key, value).apply()
         observe(key, value)
@@ -188,20 +188,19 @@ object EasyPref {
      * Use to get stored [Int] values to SharedPreferences
      *
      *  @param key
-     *  @param value
-     *  @see android.content.SharedPreferences.Editor#getInt(String, Int)
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
      */
     @JvmStatic
-    fun getInt(key: String): Int {
+    fun getInt(key: String, defaultValue: Int = 0): Int {
         assertInitialized()
-        return pref.getInt(key, 0)
+        return pref.getInt(key, defaultValue)
     }
 
     /**
      * Use to get stored [Double] values to SharedPreferences
      *
      *  @param key
-     *  @param value
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
      */
     @JvmStatic
     fun getDouble(key: String): Double {
@@ -213,36 +212,35 @@ object EasyPref {
      * Use to get stored [Long] values to SharedPreferences
      *
      *  @param key
-     *  @see android.content.SharedPreferences.Editor#getLong(String, long)
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
      */
     @JvmStatic
-    fun getLong(key: String): Long {
+    fun getLong(key: String, defaultValue: Long = 0L): Long {
         assertInitialized()
-        return pref.getLong(key, 0)
+        return pref.getLong(key, defaultValue)
     }
 
     /**
      * Use to get stored [Float] values to SharedPreferences
      *
      *  @param key
-     *  @param value
-     *  @see android.content.SharedPreferences.Editor#getFloat(String, Float)
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
      */
     @JvmStatic
-    fun getFloat(key: String): Float {
+    fun getFloat(key: String, defaultValue: Float = 0f): Float {
         assertInitialized()
-        return pref.getFloat(key, 0f)
+        return pref.getFloat(key, defaultValue)
     }
 
     /**
      * Use to get stored [String] values to SharedPreferences
      *
      *  @param key
-     *  @param value
-     *  @see android.content.SharedPreferences.Editor#putLong(String, long)
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
      */
     @JvmStatic
-    fun getString(key: String, defValue: String? = null): String? {
+    fun getString(key: String, defValue: String? = ""): String? {
         assertInitialized()
         return pref.getString(key, defValue)
     }
@@ -251,21 +249,21 @@ object EasyPref {
      * Use to get stored [Boolean] values to SharedPreferences
      *
      *  @param key
-     *  @param value
-     *  @see android.content.SharedPreferences.Editor#putLong(String, long)
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
      */
     @JvmStatic
-    fun getBoolean(key: String): Boolean {
+    fun getBoolean(key: String, defaultValue: Boolean = false): Boolean {
         assertInitialized()
-        return pref.getBoolean(key, false)
+        return pref.getBoolean(key, defaultValue)
     }
 
     /**
      * Use to get stored Set<String> values to SharedPreferences
      *
      *  @param key
-     *  @param value
-     *  @see android.content.SharedPreferences.Editor#putLong(String, long)
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
      */
     @JvmStatic
     fun getStringSet(key: String): MutableSet<String>? {
@@ -277,7 +275,7 @@ object EasyPref {
      * Use to get stored [Any] values to SharedPreferences
      *
      *  @param key
-     *  @param value
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
      *
      */
     @JvmStatic
@@ -294,11 +292,10 @@ object EasyPref {
     /*Singular Exchangeable observers*/
 
     /**
-     * Use to get stored [Any] values to SharedPreferences
+     * Use to observe stored [Int] values by key from SharedPreferences
      *
      *  @param key
-     *  @param value
-     *  ClassCastException
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
      *
      */
     @JvmStatic
@@ -307,24 +304,52 @@ object EasyPref {
         observers[key] = it
     }
 
+    /**
+     * Use to observe stored [Double] values by key from SharedPreferences
+     *
+     *  @param key
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
+     */
     @JvmStatic
     fun observeDouble(key: String): LiveData<Double> = MutableLiveData<Double>().also {
         it.value = getLong(key).toDouble()
         observers[key] = it
     }
 
+    /**
+     * Use to observe stored [Long] values by key from SharedPreferences
+     *
+     *  @param key
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
+     */
     @JvmStatic
     fun observeLong(key: String): LiveData<Long> = MutableLiveData<Long>().also {
         it.value = getLong(key)
         observers[key] = it
     }
 
+    /**
+     * Use to observe stored [Float] values by key from SharedPreferences
+     *
+     *  @param key
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
+     */
     @JvmStatic
     fun observeFloat(key: String): LiveData<Float> = MutableLiveData<Float>().also {
         it.value = getFloat(key)
         observers[key] = it
     }
 
+    /**
+     * Use to observe stored [String] values by key from SharedPreferences
+     *
+     *  @param key
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
+     */
     @JvmStatic
     fun observeString(key: String): LiveData<String> = MutableLiveData<String>().also {
         val value = getString(key)
@@ -333,12 +358,26 @@ object EasyPref {
         observers[key] = it
     }
 
+    /**
+     * Use to observe stored [Boolean] values by key from SharedPreferences
+     *
+     *  @param key
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
+     */
     @JvmStatic
     fun observeBoolean(key: String): LiveData<Boolean> = MutableLiveData<Boolean>().also {
         it.value = getBoolean(key)
         observers[key] = it
     }
 
+    /**
+     * Use to observe stored MutableSet<String> values by key from SharedPreferences
+     *
+     *  @param key
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
+     */
     @JvmStatic
     fun observeStringSet(key: String): LiveData<MutableSet<String>> = MutableLiveData<MutableSet<String>>().also {
         val value = getStringSet(key)
@@ -347,11 +386,17 @@ object EasyPref {
         observers[key] = it
     }
 
+    /**
+     * Use to observe stored [Int] values by key from SharedPreferences
+     *
+     *  @param key
+     *  Throws [ClassCastException] when key has been previously used to a value of different type
+     *
+     */
     @SuppressWarnings("Unchecked Casts")
     @JvmStatic
     fun <T> observeObject(key: String, classOfObj: Class<T>): LiveData<PrefObjectHolder<T>> =
         MutableLiveData<PrefObjectHolder<T>>().also {
-
             if(keyIsObservable(key)){ // (On subsequent observation) Ensuring old stored Type is same with incoming type
                 val oldObjType = observers[key]?.value
                 val isSameType = isSameInstance<PrefObjectHolder<T>>(oldObjType)
@@ -386,9 +431,8 @@ object EasyPref {
     }
 
     private fun throwTypeUnmatchedException() {
-        val e = EasyPrefException("Key mismatch. (1) Ensure you're not using same key to store different types")
-        //throw e
-        println(e)
+        val e = EasyPrefException("Key value type mismatch. Ensure to use different keys to store different types")
+        e.printStackTrace(); throw e
     }
 
     /**
