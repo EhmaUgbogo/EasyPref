@@ -62,7 +62,7 @@ ___
   
 ```
 
-2. Observe as needed ()
+2. Observe as needed
 
 ```kotlin
   
