@@ -50,7 +50,11 @@ ___
 2. Use as needed
 
 ```kotlin
-  
+
+  EasyPref.hasKey(key)
+
+  // Store primitive types
+
   EasyPref.putBoolean(key, boolValue)
   EasyPref.getBoolean(key)  // ... Same for Strings, Int, etc 
   
