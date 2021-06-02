@@ -51,6 +51,19 @@ object EasyPref {
     }
 
 
+    /**
+     * Use to assert if a given key exists
+     *
+     *  @param key
+     *
+     */
+    @JvmStatic
+    fun hasKey(key: String): Boolean {
+        assertInitialized()
+        return pref.contains(key)
+    }
+
+
     // Setters
 
 
