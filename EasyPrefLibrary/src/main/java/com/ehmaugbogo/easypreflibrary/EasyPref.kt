@@ -272,6 +272,23 @@ object EasyPref {
     }
 
     /**
+     * Use to delete a stored key
+     * Returns true if the key exists and is successfully deleted; Otherwise, returns false
+     *
+     *  @param key
+     *
+     */
+    @JvmStatic
+    fun deleteKey(key: String): Boolean {
+        assertInitialized()
+        if(hasKey(key)) {
+            editor.remove(key).apply()
+            return true
+        }
+        return false
+    }
+
+    /**
      * Use to get stored Set<String> values to SharedPreferences
      *
      *  @param key
