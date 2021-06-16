@@ -273,6 +273,7 @@ object EasyPref {
 
     /**
      * Use to delete a stored key
+     * Returns true if the key exists and is successfully deleted; Otherwise, returns false
      *
      *  @param key
      *
