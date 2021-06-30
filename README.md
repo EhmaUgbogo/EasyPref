@@ -33,7 +33,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.EhmaUgbogo:EasyPref:1.0.1'
+    implementation 'com.github.EhmaUgbogo:EasyPref:1.0.2'
 }
 ```
 ___
@@ -52,6 +52,8 @@ ___
 ```kotlin
 
   EasyPref.hasKey(key)
+  
+  EasyPref.deleteKey(key)
 
   // Store primitive types
 
