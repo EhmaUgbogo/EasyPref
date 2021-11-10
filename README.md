@@ -18,13 +18,23 @@ ___
 ### Setup. 
 To get a Git project into your build: 
 
-1. Add the JitPack repository to you root build.gradle at the end of repositories:
+1. Add the JitPack repository to you root build.gradle at the end of repositories for Android Studio before Artic Fox:
 
 ```groovy
 allprojects {
     repositories {
 	...
 	maven { url 'https://jitpack.io' }
+    }
+}
+
+For Android Studio Artic Fox and later add JitPack repository to you root settings.gradle
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
     }
 }
 ```
